@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        h3 {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        p {
+            margin: 20px auto;
+            opacity: 0;
+        }
+
+        .age-counter {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>About Me</h1>
+    <img id="img" src="img/me.jpg" alt="me" width="500">
+    <h3 id="name">Wayne</h3>
+    
+    <!-- Age counter -->
+    <div class="age-counter">Age: <span id="age">20</span></div>
+
+    <p id="intro">My name is Wayne and I'm a student of Republic Polytechnic, studying in the Diploma of Digital Design and Development.</p>
+
+    <!-- Anime.js animations -->
+    <script>
+        var introAnimation = anime({
+            targets: '#intro',
+            opacity: [0, 1],
+            scale: [
+                { value: 0.1, easing: 'easeOutSine', duration: 500 },
+                { value: 1, easing: 'easeInOutQuad', duration: 1200 }
+            ],
+            delay: anime.stagger(200, { grid: [14, 5], from: 'center' })
+        });
+
+        var timeline = anime.timeline({
+            easing: 'easeOutExpo',
+            duration: 1500,
+        });
+
+        timeline
+            .add({
+                targets: '#name, #intro, #age',
+                translateY: [100, 0],
+                opacity: [0, 1],
+                easing: 'easeOutExpo',
+                duration: 1500,
+                delay: anime.stagger(200),
+            })
+            .add({
+                targets: '#img',
+                translateY: -25,
+                rotate: 360,
+                opacity: [0, 1],
+                delay: 500
+            }, '-=1200');
+
+    </script>
+
+    <!-- Controls -->
+    <div class="controls">
+        <button class="play" onclick="introAnimation.play()">Play</button>
+        <button class="pause" onclick="introAnimation.pause()">Pause</button>
+        <button class="restart" onclick="introAnimation.restart()">Restart</button>
+    </div>
+
+</body>
+
+</html>
